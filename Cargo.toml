@@ -1,0 +1,36 @@
+[package]
+name = "vterm-common"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+uuid = { workspace = true }
+sha2 = { workspace = true }
+bitflags = { version = "2.4", features = ["serde"] }
+vterm-emulator = { workspace = true }
+chrono = "0.4"
+anyhow = { workspace = true }
+tracing = { workspace = true }
+
+# Shared wss:// client TLS configuration (rustls).
+rustls = { workspace = true }
+rustls-pemfile = { workspace = true }
+rustls-native-certs = { workspace = true }
+# Managed self-signed development identities shared by vterm-server and
+# vterm-asr-server.
+rcgen = { workspace = true }
+time = { workspace = true }
+x509-parser = { workspace = true }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_Storage_FileSystem", "Win32_System_Diagnostics_Debug", "Win32_System_Kernel", "Win32_System_Threading"] }
+
+[dev-dependencies]
+serde_json = { workspace = true }
+tempfile = "3"
